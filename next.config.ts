@@ -1,3 +1,4 @@
+import withPlaiceholder from '@plaiceholder/next'
 import { withPayload } from '@payloadcms/next/withPayload'
 import type { NextConfig } from 'next'
 import path from 'path'
@@ -28,4 +29,4 @@ const nextConfig: NextConfig = {
     },
 }
 
-export default withPayload(nextConfig, { devBundleServerPackages: false })
+export default withPlaiceholder(withPayload(nextConfig, { devBundleServerPackages: false }))
