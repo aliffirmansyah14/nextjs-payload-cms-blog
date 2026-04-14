@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@/components/theme-provider'
 import './global.css'
 
 export const metadata = {
@@ -9,9 +10,11 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     const { children } = props
 
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body>
-                <main>{children}</main>
+                <main>
+                    <ThemeProvider>{children}</ThemeProvider>
+                </main>
             </body>
         </html>
     )
