@@ -193,7 +193,7 @@ export interface Article {
   readTimeInMins?: number | null;
   coverImage: number | Media;
   author: number | ArticleAuthor;
-  status: 'Draf' | 'Published';
+  status: 'Draft' | 'Published';
   publishedAt?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -206,7 +206,7 @@ export interface ArticleAuthor {
   id: number;
   name: string;
   avatar: number | Media;
-  role: 'Staff Writer' | 'Guest Writer' | 'Flo rida' | 'Contributor' | 'Editor';
+  role: 'Staff Writer' | 'Guest Writer' | 'Flo Rida' | 'Contributor' | 'Editor';
   updatedAt: string;
   createdAt: string;
 }

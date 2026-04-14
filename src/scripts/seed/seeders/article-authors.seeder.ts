@@ -8,7 +8,7 @@ export async function seedArticleAuthor(payload: Payload) {
         const imageUrl = faker.image.personPortrait({ size: 256 })
         const image = await createMediaFromImageUrl(payload, imageUrl)
         if (!image) {
-            console.warn('Stop seeding karen gagal membuat image')
+            console.warn('Stop seeding karena gagal membuat image')
             return
         }
         await payload.create({
