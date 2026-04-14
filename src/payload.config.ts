@@ -11,7 +11,7 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { env } from './lib/env'
 import { Articles } from './collections/Articles/config'
-import { ArticleAuthors } from './collections/ArticleAuthors'
+import { ArticleAuthors } from './collections/ArticleAuthors/config'
 import { Media } from './collections/Media/config'
 
 const filename = fileURLToPath(import.meta.url)
