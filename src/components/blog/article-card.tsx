@@ -1,19 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import ArticleMetadata from './artilce-metadata'
+import { ArticleAuthor, Media } from '@/payload-types'
 
 export interface ArticelCardProps {
     href: string
     title: string
     summary: string
-    coverImage: string
+    coverImage: Media
     publishedAt: Date
     readTimeMins: number
-    author: {
-        avatar: string
-        name: string
-        role: string
-    }
+    author: ArticleAuthor
 }
 
 export default function ArticelCard({
@@ -29,10 +26,11 @@ export default function ArticelCard({
                 {/* cover image */}
                 <Image
                     alt={`Cover image ${title}`}
-                    src={coverImage}
+                    src={coverImage.url ?? 'https://placehold.co/600x300/png'}
+                    blurDataURL={coverImage.blurDataUrl}
                     width={600}
                     height={300}
-                    className="aspect-video object-cover object-center"
+                    className="aspect-video w-full object-cover object-center"
                     loading="eager"
                 />
                 {/* content */}
