@@ -1,61 +1,23 @@
-import { getPayloadClient } from '@/lib/payload/client'
+import { getAllArticlesPublished, getArticleBySlug } from './repository'
 
-export async function getAllArticlesPublished() {
-    const payload = await getPayloadClient()
-
-    return await payload.find({
-        collection: 'articles',
-        depth: 1,
-        select: {
-            title: true,
-            contentSummary: true,
-            status: true,
-            readTimeInMins: true,
-            slug: true,
-            author: true,
-            coverImage: true,
-            publishedAt: true,
-        },
-        where: {
-            publishedAt: {
-                not_equals: null,
-            },
-        },
-    })
+export async function getAllArticles() {
+    try {
+        const { docs: articles } = await getAllArticlesPublished()
+        return articles
+    } catch (error) {
+        console.log('Error get all articles service : ', error)
+        return []
+    }
 }
 
-export async function getArticleBySlug(slug: string) {
-    const payload = await getPayloadClient()
-
-    const { docs: article } = await payload.find({
-        collection: 'articles',
-        depth: 1,
-        select: {
-            title: true,
-            contentSummary: true,
-            status: true,
-            readTimeInMins: true,
-            slug: true,
-            author: true,
-            coverImage: true,
-            publishedAt: true,
-        },
-        where: {
-            and: [
-                {
-                    publishedAt: {
-                        not_equals: null,
-                    },
-                },
-                {
-                    slug: {
-                        equals: slug,
-                    },
-                },
-            ],
-        },
-        limit: 1,
-    })
-
-    return article[0]
+export async function getArticle(slug: string) {
+    try {
+        if (!slug) throw new Error('Paramater slug kosong')
+        const { docs: article } = await getArticleBySlug(slug)
+        if (article.length === 0 && !article) return null
+        return article[0]
+    } catch (error) {
+        console.log('Error get article service: ', error)
+        return null
+    }
 }

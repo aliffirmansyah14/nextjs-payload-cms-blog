@@ -1,7 +1,7 @@
-import { getArticleBySlug } from '@/collections/Articles/services'
 import ArticleMetadata from '@/components/blog/artilce-metadata'
 import Image from 'next/image'
 import { isRelationObjet } from '../page'
+import { getArticle } from '@/collections/Articles/services'
 
 interface BlostPostPageProps {
     params: Promise<{
@@ -11,7 +11,7 @@ interface BlostPostPageProps {
 
 export default async function BlogPostPage({ params }: BlostPostPageProps) {
     const slug = (await params).slug
-    const article = await getArticleBySlug(slug)
+    const article = await getArticle(slug)
 
     if (!article) return <h1>Article tidak ditemukan</h1>
 

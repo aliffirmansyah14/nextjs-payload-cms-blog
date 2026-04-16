@@ -1,4 +1,4 @@
-import { getAllArticlesPublished } from '@/collections/Articles/services'
+import { getAllArticles } from '@/collections/Articles/services'
 import ArticelCard from '@/components/blog/article-card'
 
 export function isRelationObjet<T>(object: T | number): object is T {
@@ -6,7 +6,7 @@ export function isRelationObjet<T>(object: T | number): object is T {
 }
 
 export default async function BlogPage() {
-    const { docs: articles } = await getAllArticlesPublished()
+    const articles = await getAllArticles()
     if (articles.length <= 0) {
         return (
             <div className="w-full py-4">
