@@ -22,7 +22,7 @@ export default function ArticelCard({
 }: ArticelCardProps) {
     return (
         <Link href={href} aria-label={`Read article: "${title}"`} className="block">
-            <article className="rounded-md border border-gray-700 overflow-hidden">
+            <article className="rounded-md border border-gray-700 overflow-hidden h-full">
                 {/* cover image */}
                 <Image
                     alt={`Cover image ${title}`}
