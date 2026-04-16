@@ -1,8 +1,9 @@
-import type { CollectionConfig, FieldHook } from 'payload'
+import type { CollectionConfig } from 'payload'
 import { genereateSlugHook } from './hook/generated-slug-hook'
 import { generateSummaryContentHooks } from './hook/generated-summery-content-hook'
 import { convertLexicalToPlaintext } from '@payloadcms/richtext-lexical/plaintext'
-import { ARTICLE_STATUS } from './constant'
+import { ARTICLE_STATUS, CACHE_TAG_ARTICLES } from './constant'
+import { revalidateTag } from 'next/cache'
 
 export const Articles: CollectionConfig = {
     slug: 'articles',
@@ -90,4 +91,11 @@ export const Articles: CollectionConfig = {
             },
         },
     ],
+    hooks: {
+        afterChange: [
+            () => {
+                revalidateTag(CACHE_TAG_ARTICLES, 'max')
+            },
+        ],
+    },
 }
