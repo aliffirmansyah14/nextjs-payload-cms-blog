@@ -2,6 +2,8 @@ import ArticleMetadata from '@/components/blog/artilce-metadata'
 import Image from 'next/image'
 import { isRelationObjet } from '../page'
 import { getArticle } from '@/collections/Articles/services'
+import { RichText } from '@/components/payload/rich-text'
+import { notFound } from 'next/navigation'
 
 interface BlostPostPageProps {
     params: Promise<{
@@ -13,7 +15,7 @@ export default async function BlogPostPage({ params }: BlostPostPageProps) {
     const slug = (await params).slug
     const article = await getArticle(slug)
 
-    if (!article) return <h1>Article tidak ditemukan</h1>
+    if (!article) return notFound()
 
     return (
         <div className="prose lg:prose-lg dark:prose-invert min-w-full">
@@ -43,7 +45,7 @@ export default async function BlogPostPage({ params }: BlostPostPageProps) {
                 />
             )}
             {/* contant */}
-            <p>{article.contentSummary}</p>
+            <RichText lexicalData={article.content} />
         </div>
     )
 }

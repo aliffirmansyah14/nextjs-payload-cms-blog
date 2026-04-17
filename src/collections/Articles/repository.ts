@@ -39,6 +39,7 @@ export async function getArticleBySlug(slug: string) {
             author: true,
             coverImage: true,
             publishedAt: true,
+            content: true,
         },
         where: {
             and: [
